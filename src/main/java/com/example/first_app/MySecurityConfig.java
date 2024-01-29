@@ -30,7 +30,8 @@ public class MySecurityConfig { //customizacion del Authorization Provider
 
     @Bean
     SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
-        http.httpBasic(); //Basic Auth, el ide lo marca como deprecado, pero corre igual!! Antes Basic Auth estaba por defecto, mientras q aca le estamos diciendo explicitamente q ocupe Basic Auth
+       // http.httpBasic(); //Basic Auth, el ide lo marca como deprecado, pero corre igual!! Antes Basic Auth estaba por defecto, mientras q aca le estamos diciendo explicitamente q ocupe Basic Auth
+      http.formLogin();//formLogin se usa mas para aplicaciones web y tiene una linda presentacion por defecto en el browser.
         http.authorizeRequests().anyRequest().authenticated(); //cualquier peticion siempre que este autenticado con user y password de Basic Auth
         return http.build();
     }
