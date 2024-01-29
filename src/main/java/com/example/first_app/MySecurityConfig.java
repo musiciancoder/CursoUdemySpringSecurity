@@ -32,7 +32,9 @@ public class MySecurityConfig { //customizacion del Authorization Provider
     SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
        // http.httpBasic(); //Basic Auth, el ide lo marca como deprecado, pero corre igual!! Antes Basic Auth estaba por defecto, mientras q aca le estamos diciendo explicitamente q ocupe Basic Auth
       http.formLogin();//formLogin se usa mas para aplicaciones web y tiene una linda presentacion por defecto en el browser.
-        http.authorizeRequests().anyRequest().authenticated(); //cualquier peticion siempre que este autenticado con user y password de Basic Auth
+       // http.authorizeRequests().anyRequest().authenticated(); //cualquier peticion siempre que este autenticado con user y password de Basic Auth
+       http.authorizeHttpRequests().requestMatchers("/hello").authenticated();// una vez que el usuario ya se ha autenticadosolo puede ingresar a esta url
+              //.anyRequest.denyAll(); //esto es para hacer explicito que las demas url estan prohibidas, pero es opcional, ademas el ide no me lo agarra a mi.
         return http.build();
     }
 }
